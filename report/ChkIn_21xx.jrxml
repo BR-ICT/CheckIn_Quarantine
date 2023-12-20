@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChkIn_21xx" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23d21025-33f8-4a60-aaa0-4037071dd087">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PG"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://192.200.9.124:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/HRBP_CHECKIN/ChkIn_21xx_files/main_jrxml"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="ireport.jasperserver.reportUnit" value="/HRBP_CHECKIN/ChkIn_21xx"/>
+	<parameter name="fdate" class="java.sql.Date"/>
+	<parameter name="tdate" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select st_code || ' : ' || st_ename || '  ' ||st_elname as NAME,st_costc,st_costn,cq_date, cq_inloc, cq_intm, cq_type
+from check_qrtine,employee_all
+where cq_code = st_code
+and cq_code like '21%'
+and cq_date between  $P{fdate} and  $P{tdate} 
+order by cq_code,cq_date]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+	</field>
+	<field name="st_costc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="st_costc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee_all"/>
+	</field>
+	<field name="st_costn" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="st_costn"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee_all"/>
+	</field>
+	<field name="cq_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="cq_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="check_qrtine"/>
+	</field>
+	<field name="cq_inloc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cq_inloc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="check_qrtine"/>
+	</field>
+	<field name="cq_intm" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="cq_intm"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="check_qrtine"/>
+	</field>
+	<field name="cq_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cq_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="check_qrtine"/>
+	</field>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="170" height="30" uuid="02d420ad-892f-42ff-9aa0-d908d9f5811c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="170" y="0" width="70" height="30" uuid="67da2b70-9a58-4480-bbf3-9e1b3602cdf2"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{st_costc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="240" y="0" width="100" height="30" uuid="1a82f88d-d972-4687-a342-83c94dd7904d"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{st_costn}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToBandHeight" x="340" y="0" width="80" height="30" uuid="00987ab3-39e0-41d9-9f32-3ae4dca0da99"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cq_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="420" y="0" width="240" height="30" uuid="7c82ec4d-e406-42bb-89ed-cb55c0e9b9f3"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cq_inloc}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss">
+				<reportElement stretchType="RelativeToBandHeight" x="660" y="0" width="70" height="30" uuid="631f1df3-2b8a-4e73-9d5e-bc9b62f44208"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cq_intm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="730" y="0" width="70" height="30" uuid="d2903a75-4378-40e3-b6a0-7e161d2cb9b2"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunSPK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cq_type}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
